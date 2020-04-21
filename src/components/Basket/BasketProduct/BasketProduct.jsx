@@ -9,9 +9,9 @@ function BasketProduct({product, setProductCount, handleDeleteProduct}) {
 
     const [count, setCount] = useState(product.count);
 
-    const onChangeCount = (event) => {
-        setCount(event.target.value);
-        setProductCount(product.id, event.target.value);
+    const onChangeCount = ({target: {value}}) => {
+        setCount(value);
+        setProductCount(product.id, value);
     };
 
     return (<>
