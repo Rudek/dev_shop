@@ -3,12 +3,13 @@ import {withRouter} from "react-router";
 import PropTypes from 'prop-types';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 import category from "../../types/category";
 import useDataApi from "../../utils/hooks/useDataApi";
 import Product from "../Product/Product";
 import {useStyles} from "./styles";
-import Grid from "@material-ui/core/Grid";
+
 
 
 function Category({categories, match: {params}}) {
