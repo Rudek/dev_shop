@@ -23,7 +23,6 @@ function BasketProduct({product, setProductCount, handleDeleteProduct}) {
         </Grid>
         <Grid item xs={3}>
             <TextField id="outlined-basic"
-                       label="Outlined"
                        type="number"
                        variant="outlined"
                        size="small"

@@ -36,7 +36,11 @@ function Layout() {
                     <Grid container direction="row">
                         <TopBar setOpenBasket={setOpenBasket}/>
                         <Grid className={classes.menu}>
-                            {isLoading && <CircularProgress />}
+                            {isLoading &&
+                                <Grid container justify="center"
+                                      alignItems="center" className={classes.menuLoadingGrid}>
+                                    <CircularProgress />
+                                </Grid>}
                             {rawData && <Menu categories={rawData} />}
                         </Grid>
                         <Grid className={classes.mainSection}>
@@ -45,7 +49,7 @@ function Layout() {
                                     Main Page
                                 </Route>
                                 <Route path="/category/:alias">
-                                    {isLoading && <CircularProgress />}
+                                    {isLoading && <CircularProgress className={classes.menuLoading}/>}
                                     {rawData && <Category categories={rawData} />}
                                 </Route>
                                 <Route>
