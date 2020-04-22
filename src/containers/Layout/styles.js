@@ -9,9 +9,18 @@ const useStyles = makeStyles(() => ({
         height: '100%',
         width: '300px'
     },
+    menuLoadingGrid: {
+        padding: '20px',
+    },
+    menuLoading: {
+        display: 'block',
+        margin: '0 auto'
+    },
     mainSection: {
         height: '100%',
-        width: 'calc(100% - 300px)'
+        width: 'calc(100% - 300px)',
+        padding: '20px',
+        boxSizing:'border-box'
     }
 }));
 

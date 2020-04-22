@@ -11,6 +11,7 @@ import Basket from "../../components/Basket/Basket";
 import BasketContext from "../../context/basketContext";
 import Checkout from "../../components/Checkout/Checkout";
 import useStyles from "./styles";
+import TopBar from "../../components/TopBar/TopBar";
 
 function Layout() {
     const classes = useStyles();
@@ -20,21 +21,27 @@ function Layout() {
     const handleCloseBasket = () => setOpenBasket(false);
     const {basket, setBasket} = useContext(BasketContext);
 
-    const handleDeleteProduct = name => () => {
-        setBasket(prevBasket => prevBasket);
+    const handleDeleteProduct = id => () => {
+        setBasket([...basket.filter(({id: productId}) => productId !== id )]);
     };
 
-    const setProductCount = name => count => {
-        setBasket(prevBasket => prevBasket);
+    const setProductCount = (id, count ) => {
+        basket.find((p, index, arr) => p.id === id && (arr[index].count = count) );
+        setBasket([...basket]);
     };
 
     return (
         <ErrorBoundary>
             <BrowserRouter>
                 <Grid container classes={classes.app}>
-                    <Grid container direction="raw">
+                    <Grid container direction="row">
+                        <TopBar setOpenBasket={setOpenBasket}/>
                         <Grid className={classes.menu}>
-                            {isLoading && <CircularProgress />}
+                            {isLoading &&
+                                <Grid container justify="center"
+                                      alignItems="center" className={classes.menuLoadingGrid}>
+                                    <CircularProgress />
+                                </Grid>}
                             {rawData && <Menu categories={rawData} />}
                         </Grid>
                         <Grid className={classes.mainSection}>
@@ -46,7 +53,7 @@ function Layout() {
                                     <Checkout />
                                 </Route>
                                 <Route path="/category/:alias">
-                                    {isLoading && <CircularProgress />}
+                                    {isLoading && <CircularProgress className={classes.menuLoading}/>}
                                     {rawData && <Category categories={rawData} />}
                                 </Route>
                                 <Route>
