@@ -13,12 +13,8 @@ function Product({product}) {
     const {basket, setBasket} = useContext(BasketContext);
 
     const onBuyClick = () => {
-        const desiredProduct = basket.find((p, index, arr) => p.id === product.id && arr[index].count++ );
-        if (!desiredProduct) {
-            product.count = 1;
-            basket.push(product);
-        }
-        setBasket([...basket]);
+        const {count: countProductInBasket} = (basket.find(({id}) => id === product.id) || {count: 0});
+        setBasket([...basket.filter(({id}) => id !== product.id), {...product, count: countProductInBasket + 1}]);
     };
 
     return (
