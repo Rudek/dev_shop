@@ -1,13 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {withRouter} from "react-router";
 import PropTypes from 'prop-types';
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
 import category from "../../types/category";
-import useDataApi from "../../utils/hooks/useDataApi";
-import Product from "../Product/Product";
+import Products from "../Products/Products";
 import {useStyles} from "./styles";
 
 
@@ -17,20 +15,16 @@ function Category({categories, match: {params}}) {
     const {alias} = params;
     const category = categories.find(({alias: categoryAlias}) => categoryAlias === alias);
 
-    const { rawData: products, isLoading} = useDataApi({ url: '/products' });
-
     if (!category) {
         return '404';
     }
+
     return <>
         <Typography className={classes.category} variant="h2">
             {`${category.id} - ${category.title}`}
         </Typography>
-        {isLoading && <CircularProgress />}
         <Grid container>
-            {products && products
-                .filter(({cat_id: categoryId}) => categoryId === category.id)
-                .map(product => (<Product key={product.id} product={product}/>))}
+            <Products categoryId={category.id} categoryTitle={category.title}/>
         </Grid>
     </>;
 }

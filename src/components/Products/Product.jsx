@@ -1,14 +1,12 @@
 import React, {useContext} from 'react';
-import CardContent from '@material-ui/core/CardContent';
-import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import AddShoppingCart from '@material-ui/icons/AddShoppingCart';
-
-import {useStyles} from "./styles";
 import Button from "@material-ui/core/Button";
-import BasketContext from "../../context/basketContext";
+import AddShoppingCart from "@material-ui/core/SvgIcon/SvgIcon";
+import Card from "@material-ui/core/Card";
 
+import BasketContext from "../../context/basketContext";
+import {useStyles} from "./styles";
 
 function Product({product}) {
     const classes = useStyles();
@@ -39,10 +37,9 @@ function Product({product}) {
                 <strong>
                     {product.price}
                 </strong>
-
             </CardContent>
         </Card>
-    );
+    )
 }
 
 export default Product;
