@@ -16,10 +16,10 @@ function BasketProduct({product, setProductCount, handleDeleteProduct}) {
 
     return (<>
         <Grid item xs={4}>
-            <Typography>{product.title}</Typography>
+            <Typography variant="body2">{product.title}</Typography>
         </Grid>
         <Grid item xs={3}>
-            <Typography>{product.price}</Typography>
+            <Typography variant="body2">{product.price}</Typography>
         </Grid>
         <Grid item xs={3}>
             <TextField id="outlined-basic"
